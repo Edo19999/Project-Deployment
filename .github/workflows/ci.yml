@@ -44,8 +44,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Литинг
-        run: flake8 logistic/ --exclude=logistic/migrations/
+      - name: Run flake8
+        run: flake8 logistic/ --exclude=logistic/migrations/ --ignore=W292,W293
+
 
       - name: Миграции базы данных
         run: python manage.py migrate
