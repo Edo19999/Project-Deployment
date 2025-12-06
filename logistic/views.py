@@ -1,5 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from requests import Response
+from rest_framework.decorators import api_view
+from rest_framework.response import Response  # Правильный импорт Response из DRF
 from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
 from .models import Product, Stock
@@ -26,10 +27,6 @@ class StockViewSet(ModelViewSet):
     search_fields = ['products__title', 'products__description']
 
 
-def api_view(param):
-    pass
-
-
-@api_view(['Get'])
-def sample_view(requests):
+@api_view(['GET'])  # Стандартный декоратор DRF для API view
+def sample_view(request):  # Исправлено: request вместо requests
     return Response({'message': 'Hello work!!!'})
