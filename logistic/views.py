@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from requests import Response
 from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
 from .models import Product, Stock
@@ -23,3 +24,12 @@ class StockViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['products']
     search_fields = ['products__title', 'products__description']
+
+
+def api_view(param):
+    pass
+
+
+@api_view(['Get'])
+def sample_view(requests):
+    return Response({'message': 'Hello work!!!'})
