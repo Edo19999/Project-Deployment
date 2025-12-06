@@ -49,27 +49,25 @@ jobs:
 
       - name: Миграции базы данных
         run: |
-          # cd stocks_products  # Раскомментируйте, если manage.py в этой поддиректории
           python manage.py migrate
         env:
           SECRET_KEY: ${{ secrets.SECRET }}
           DEBUG: ${{ secrets.DEBUG_MODE }}
           ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_HOST: localhost  # Переопределяем для локального сервиса PostgreSQL
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_PORT: ${{ secrets.DB_PORT }}
           DB_USER: ${{ secrets.DB_USER }}
 
-      - name: Collect static files  # Добавьте этот шаг, если нужно для деплоя
+      - name: Collect static files
         run: |
-          # cd stocks_products  # Раскомментируйте, если manage.py в этой поддиректории
           python manage.py collectstatic --noinput
         env:
           SECRET_KEY: ${{ secrets.SECRET }}
           DEBUG: ${{ secrets.DEBUG_MODE }}
           ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_HOST: localhost  # Переопределяем для локального сервиса PostgreSQL
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_PORT: ${{ secrets.DB_PORT }}
@@ -77,17 +75,17 @@ jobs:
 
       - name: Тестирование
         run: |
-          # cd stocks_products  # Раскомментируйте, если manage.py в этой поддиректории
           python manage.py test
         env:
           SECRET_KEY: ${{ secrets.SECRET }}
           DEBUG: ${{ secrets.DEBUG_MODE }}
           ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_HOST: localhost  # Переопределяем для локального сервиса PostgreSQL
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_PORT: ${{ secrets.DB_PORT }}
           DB_USER: ${{ secrets.DB_USER }}
+
 
 
 
