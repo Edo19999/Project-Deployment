@@ -49,7 +49,9 @@ jobs:
 
 
       - name: Миграции базы данных
-        run: python manage.py migrate
+        run: |
+          cd ..
+          python manage.py migrate
         env:
           SECRET_KEY: ${{ env.SECRET_KEY }}
           DEBUG: ${{ env.DEBUG }}
