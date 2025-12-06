@@ -61,7 +61,6 @@ jobs:
           DB_PASSWORD: ${{ env.DB_PASSWORD }}
           DB_PORT: ${{ env.DB_PORT }}
           DB_USER: ${{ env.DB_USER }}
-        working-directory: logistic  # Удалите, если проект в корне
 
       - name: Тестирование
         run: python manage.py test
