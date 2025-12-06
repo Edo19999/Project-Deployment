@@ -1,9 +1,9 @@
+from django.urls import path
 from rest_framework.routers import DefaultRouter
-
-from .views import ProductViewSet, StockViewSet
+from . import views
 
 router = DefaultRouter()
 router.register('products', ProductViewSet)
 router.register('stocks', StockViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [path('test/', views.test_view)] + router.urls
