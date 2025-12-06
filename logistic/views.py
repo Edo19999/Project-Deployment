@@ -5,14 +5,17 @@ from .models import Product, Stock
 from .serializers import ProductSerializer, StockSerializer
 from django.http import JsonResponse
 
+
 def test_view(request):
     return JsonResponse({'message': 'test ok'})
+
 
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [SearchFilter]
     search_fields = ['title', 'description']
+
 
 class StockViewSet(ModelViewSet):
     queryset = Stock.objects.all()
